@@ -40,6 +40,7 @@ export default class ReactToPrint extends React.Component<IReactToPrintProps> {
 
         if (onBeforePrint) {
             onBeforePrint();
+            this.forceUpdate();
         }
 
         setTimeout(() => {
@@ -50,7 +51,7 @@ export default class ReactToPrint extends React.Component<IReactToPrintProps> {
             if (onAfterPrint) {
                 onAfterPrint();
             }
-        }, 5000);
+        }, 0);
     };
 
     handlePrint = () => {
