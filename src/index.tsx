@@ -58,8 +58,7 @@ export default class ReactToPrint extends React.Component<IReactToPrintProps> {
             bodyClass = "",
             content,
             copyStyles = true,
-            pageStyle,
-            onBeforePrint
+            pageStyle
         } = this.props;
 
         const contentEl = content();
@@ -195,7 +194,8 @@ export default class ReactToPrint extends React.Component<IReactToPrintProps> {
         return React.cloneElement(trigger(), {
             onClick: () => {
                 if(onBeforePrint){
-                    onBeforePrint().then(this.handlePrint);
+                    onBeforePrint();
+                    setTimeout(this.handlePrint, 1000);
                 }
                 else{
                     this.handlePrint();
