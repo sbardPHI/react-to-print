@@ -40,7 +40,6 @@ export default class ReactToPrint extends React.Component<IReactToPrintProps> {
 
         if (onBeforePrint) {
             onBeforePrint();
-            this.forceUpdate();
         }
 
         setTimeout(() => {
@@ -60,6 +59,7 @@ export default class ReactToPrint extends React.Component<IReactToPrintProps> {
             content,
             copyStyles = true,
             pageStyle,
+            onBeforePrint
         } = this.props;
 
         const contentEl = content();
@@ -188,11 +188,19 @@ export default class ReactToPrint extends React.Component<IReactToPrintProps> {
 
     render() {
         const {
+            onBeforePrint,
             trigger,
         } = this.props;
 
         return React.cloneElement(trigger(), {
-            onClick: this.handlePrint,
+            onClick: () => {
+                if(onBeforePrint){
+                    onBeforePrint().then(this.handlePrint);
+                }
+                else{
+                    this.handlePrint();
+                }
+            },
             ref: this.setRef,
         });
     }
