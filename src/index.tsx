@@ -50,7 +50,7 @@ export default class ReactToPrint extends React.Component<IReactToPrintProps> {
             if (onAfterPrint) {
                 onAfterPrint();
             }
-        }, 1000);
+        }, 5000);
     };
 
     handlePrint = () => {
