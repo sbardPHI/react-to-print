@@ -195,7 +195,7 @@ export default class ReactToPrint extends React.Component<IReactToPrintProps> {
             onClick: () => {
                 if(onBeforePrint){
                     onBeforePrint();
-                    setTimeout(this.handlePrint, 1000);
+                    setTimeout(this.handlePrint, 10000);
                 }
                 else{
                     this.handlePrint();
